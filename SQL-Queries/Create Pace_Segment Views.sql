@@ -47,3 +47,15 @@ QUALIFY ROW_NUMBER() OVER (
   PARTITION BY stay_date, property_code
   ORDER BY snapshot_date DESC
 ) = 1;
+
+
+-- ----------------------------------------------------------------
+-- VIEW: PaceData_SegmentV_MonthlyV
+-- ----------------------------------------------------------------
+-- Create summuaried monthly-level table from the Pace_Segment data
+
+CREATE OR REPLACE VIEW `devrebel-big-query-database.Pace.Pace_SegmentV_MonthlyV` AS
+SELECT 
+  *,
+  DATE_TRUNC(stay_date, MONTH) AS stay_month
+FROM `devrebel-big-query-database.Pace.Pace_SegmentV_LatestSnapshotV`;

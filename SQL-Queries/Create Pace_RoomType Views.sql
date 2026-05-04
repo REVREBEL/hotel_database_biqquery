@@ -44,7 +44,7 @@ CREATE OR REPLACE VIEW `devrebel-big-query-database.Pace.Pace_RoomTypeV_LatestSn
 SELECT *
 FROM `devrebel-big-query-database.Pace.Pace_RoomTypeV`
 QUALIFY ROW_NUMBER() OVER (
-  PARTITION BY stay_date, property_code
+  PARTITION BY stay_date, property_code, roomtype
   ORDER BY snapshot_date DESC
 ) = 1;
 

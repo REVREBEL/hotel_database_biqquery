@@ -44,7 +44,7 @@ CREATE OR REPLACE VIEW `devrebel-big-query-database.Pace.Pace_SegmentV_LatestSna
 SELECT *
 FROM `devrebel-big-query-database.Pace.Pace_SegmentV`
 QUALIFY ROW_NUMBER() OVER (
-  PARTITION BY stay_date, property_code
+  PARTITION BY stay_date, property_code, segment
   ORDER BY snapshot_date DESC
 ) = 1;
 
